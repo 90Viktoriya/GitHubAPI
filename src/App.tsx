@@ -1,9 +1,14 @@
+import { Provider } from 'react-redux';
 import './App.css';
+import { Router } from './features/Router/Router';
+import { store } from './features/Redux/store';
 
 function App() {
   return (
     <>
-      <h1>Добро пожаловать!</h1>
+      <Provider store={store}>
+        <Router />
+      </Provider>
     </>
   );
 }
