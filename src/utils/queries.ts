@@ -8,7 +8,7 @@ class Queries {
         repositoryCount
         nodes {
           ... on Repository {
-            description
+            name
             forkCount
             stargazerCount
             languages(first: ${LANGUAGE_COUNT}) {
