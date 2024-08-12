@@ -10,10 +10,13 @@ export const searchSlice = createSlice({
     },
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
+    },
+    setRowsPerPage: (state, action: PayloadAction<number>) => {
+      state.rowsPerPage = action.payload;
     }
   }
 });
 
-export const { setCurrentPage, setSearchValue } = searchSlice.actions;
+export const { setCurrentPage, setSearchValue, setRowsPerPage } = searchSlice.actions;
 
 export default searchSlice.reducer;

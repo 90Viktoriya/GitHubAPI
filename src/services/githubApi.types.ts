@@ -1,3 +1,11 @@
+//Data required for repositories request
+export type RepositoriesRequest = {
+  searchValue: string;
+  currentPage: number;
+  rowsPerPage: number;
+};
+
+//Result for repositories request
 export type RepositoriesResponse = {
   data: {
     search: {

@@ -1,2 +1,2 @@
-export const COUNT_PER_PAGE = 10;
-export const LANGUAGE_COUNT = 3;
+export const LANGUAGE_COUNT = 1;
+export const LANGUAGE_COUNT_IN_DETAILS = 10;

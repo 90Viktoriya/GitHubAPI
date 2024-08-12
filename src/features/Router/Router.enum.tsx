@@ -1,5 +1,5 @@
 export enum RouterParams {
-  SEARCH = 'search',
+  QUERY = 'query',
   PAGE = 'page'
 }
 

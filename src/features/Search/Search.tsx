@@ -1,10 +1,11 @@
 import { useCallback, useState } from 'react';
-import { ComponentsCaptions } from '../../../data/ComponentsCaptions';
-import { setSearchValue } from '../../../features/Redux/searchSlice/searchSlice';
-import { useAppDispatch } from '../../../features/Redux/hooks';
-import { RouterPath } from '../../../features/Router/Router.enum';
+import { ComponentsCaptions } from '../../data/ComponentsCaptions';
+import { setCurrentPage, setSearchValue } from '../Redux/searchSlice/searchSlice';
+import { useAppDispatch } from '../Redux/hooks';
+import { RouterParams, RouterPath } from '../Router/Router.enum';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField } from '@mui/material';
+import { initialState } from '../Redux/searchSlice/searchSlice.constants';
 
 export function Search() {
   const [inputValue, setInputValue] = useState('');
@@ -17,7 +18,10 @@ export function Search() {
 
   const handleOnClick = useCallback(() => {
     dispatch(setSearchValue(inputValue));
-    navigate(`/${RouterPath.SEARCH}/${inputValue}`);
+    dispatch(setCurrentPage(initialState.currentPage));
+    navigate(
+      `/${RouterPath.SEARCH}/?${RouterParams.QUERY}=${inputValue}&${RouterParams.PAGE}=${initialState.currentPage}`
+    );
   }, [dispatch, inputValue, navigate]);
 
   return (

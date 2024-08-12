@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import { ComponentsCaptions } from '../../data/ComponentsCaptions';
-import { Search } from './Search/Search';
+import { Search } from '../../features/Search/Search';
 import { Outlet, useLocation } from 'react-router-dom';
 import { RouterPath } from '../../features/Router/Router.enum';
 

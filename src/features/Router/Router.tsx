@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { RouterPath, RouterParams } from './Router.enum';
+import { RouterPath } from './Router.enum';
 import { Home } from '../../pages/Home/Home';
 import { Error } from '../../pages/Error/Error';
 import { Result } from '../../pages/Home/Result/Result';
@@ -12,7 +12,7 @@ export function Router() {
       errorElement: <Error />,
       children: [
         {
-          path: `${RouterPath.SEARCH}/:${RouterParams.SEARCH}`,
+          path: `${RouterPath.SEARCH}`,
           element: <Result />
         }
       ]
