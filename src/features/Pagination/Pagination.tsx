@@ -14,6 +14,7 @@ export function Pagination() {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  console.log(totalCount);
   const handleChangePage = useCallback(
     (event: unknown, newPage: number) => {
       setSearchParams({
@@ -37,9 +38,9 @@ export function Pagination() {
     <TablePagination
       rowsPerPageOptions={[10, 25, 100]}
       component="div"
-      count={totalCount ?? 0}
+      count={totalCount ? Math.min(totalCount, 1000) : 0} // Github allow a maximum of 1,000 results
       rowsPerPage={rowsPerPage}
-      page={currentPage - 1}
+      page={totalCount ? currentPage - 1 : 0}
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />
