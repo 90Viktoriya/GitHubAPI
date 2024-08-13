@@ -1,4 +1,4 @@
-import { Box, Paper } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useGetRepositories } from '../../../hooks/useGetRepositories';
 import { Pagination } from '../../../features/Pagination/Pagination';
 import { ResultTable } from '../../../features/ResultTable/ResultTable';
@@ -11,6 +11,7 @@ import { setSearchValue, setCurrentPage, setSelectedRepository } from '../../../
 import { initialState } from '../../../features/Redux/searchSlice/searchSlice.constants';
 import { ComponentsCaptions } from '../../../data/ComponentsCaptions';
 import { Details } from '../Details/Details';
+import styles from './Result.module.sass';
 
 export function Result() {
   const { isFetching } = useGetRepositories();
@@ -48,10 +49,15 @@ export function Result() {
   ]);
 
   return (
-    <Paper>
-      {isFetching ? <Loader /> : <ResultTable />}
-      <Pagination />
-      {details ? <Details /> : <Box>{ComponentsCaptions.REPOSITORY_REQUEST}</Box>}
-    </Paper>
+    <>
+      <Box className={styles.results}>
+        <Typography variant="h2">{ComponentsCaptions.SEARCH_RESULT}</Typography>
+        {isFetching ? <Loader /> : <ResultTable />}
+        <Pagination />
+      </Box>
+      <Box className={details ? styles.details : styles.empty}>
+        {details ? <Details /> : <Typography>{ComponentsCaptions.REPOSITORY_REQUEST}</Typography>}
+      </Box>
+    </>
   );
 }

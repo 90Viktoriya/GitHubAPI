@@ -1,14 +1,17 @@
 import { Provider } from 'react-redux';
-import './App.css';
 import { Router } from './features/Router/Router';
 import { store } from './features/Redux/store';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './data/theme';
 
 function App() {
   return (
     <>
-      <Provider store={store}>
-        <Router />
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Router />
+        </Provider>
+      </ThemeProvider>
     </>
   );
 }

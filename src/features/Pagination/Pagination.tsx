@@ -6,6 +6,7 @@ import { setRowsPerPage } from '../Redux/searchSlice/searchSlice';
 import { initialState } from '../Redux/searchSlice/searchSlice.constants';
 import { RouterParams } from '../Router/Router.enum';
 import { useSearchParams } from 'react-router-dom';
+import styles from './Pagination.module.sass';
 
 export function Pagination() {
   const { totalCount } = useGetRepositories();
@@ -35,6 +36,7 @@ export function Pagination() {
   );
   return (
     <TablePagination
+      className={styles.pagination}
       rowsPerPageOptions={[10, 25, 100]}
       component="div"
       count={totalCount ? Math.min(totalCount, 1000) : 0} // Github allow a maximum of 1,000 results

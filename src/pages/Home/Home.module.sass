@@ -1,0 +1,12 @@
+@import '../../sass/base'
+@mixin main
+  @extend %container-shared
+  flex-direction: row
+  color: black
+  min-height: calc(100svh - 80px)
+.main
+  @include main
+
+.header
+  @include main
+  @extend %container-center

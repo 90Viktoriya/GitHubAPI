@@ -1,11 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Input } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { ComponentsCaptions } from '../../data/ComponentsCaptions';
 import { setCurrentPage, setSearchValue } from '../Redux/searchSlice/searchSlice';
 import { useAppDispatch } from '../Redux/hooks';
 import { RouterParams, RouterPath } from '../Router/Router.enum';
-import { useNavigate } from 'react-router-dom';
-import { Box, Button, TextField } from '@mui/material';
 import { initialState } from '../Redux/searchSlice/searchSlice.constants';
+import styles from './Search.module.sass';
 
 export function Search() {
   const [inputValue, setInputValue] = useState('');
@@ -25,14 +26,17 @@ export function Search() {
   }, [dispatch, inputValue, navigate]);
 
   return (
-    <Box>
-      <TextField
+    <Box className={styles.search}>
+      <Input
+        className={styles.input}
         type="text"
         placeholder={ComponentsCaptions.SEARCH_REQUEST}
         value={inputValue}
         onChange={handleChange}
       />
-      <Button onClick={handleOnClick}>{ComponentsCaptions.SEARCH}</Button>
+      <Button className={styles.button} onClick={handleOnClick} variant="contained">
+        {ComponentsCaptions.SEARCH}
+      </Button>
     </Box>
   );
 }

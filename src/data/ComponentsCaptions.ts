@@ -5,5 +5,6 @@ export enum ComponentsCaptions {
   ERROR_PAGE = 'Упс! Такой страницы не найдено',
   SEARCH = 'искать',
   SEARCH_REQUEST = 'Введите поисковый запрос',
-  REPOSITORY_REQUEST = 'Выберите репозиторий'
+  REPOSITORY_REQUEST = 'Выберите репозиторий',
+  LICENSE = 'Лицензия: '
 }

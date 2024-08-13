@@ -1,0 +1,18 @@
+@import 'constants', 'base'
+:root
+  font-family: Roboto sans-serif
+  line-height: 1.5
+  font-weight: 400
+  background-color: $background-color
+  color: #4F4F4F
+
+body
+  width: 100%
+  display: flex
+  place-items: center
+  min-height: 100svh
+  margin: 0
+#root
+  @extend %container-shared
+  flex-direction: column
+  min-height: 100vh

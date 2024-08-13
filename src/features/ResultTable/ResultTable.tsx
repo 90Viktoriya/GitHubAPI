@@ -45,12 +45,10 @@ export function ResultTable() {
                 <TableCell component="th" scope="row">
                   {repository.name}
                 </TableCell>
-                <TableCell align="right">
-                  {repository.languages.nodes.length > 0 ? repository.languages.nodes[0].name : ''}
-                </TableCell>
-                <TableCell align="right">{repository.forkCount}</TableCell>
-                <TableCell align="right">{repository.stargazerCount}</TableCell>
-                <TableCell align="right">{repository.updatedAt}</TableCell>
+                <TableCell>{repository.languages.nodes.length > 0 ? repository.languages.nodes[0].name : ''}</TableCell>
+                <TableCell>{repository.forkCount}</TableCell>
+                <TableCell>{repository.stargazerCount}</TableCell>
+                <TableCell>{repository.updatedAt.substring(0, 10)}</TableCell>
               </TableRow>
             ))
           )}
