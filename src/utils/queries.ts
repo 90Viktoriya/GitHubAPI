@@ -2,9 +2,9 @@ import { gql } from 'graphql-request';
 import { LANGUAGE_COUNT } from '../services/githubApi.constants';
 
 class Queries {
-  getRepositories(name: string, page: string, rowsPerPage: number) {
+  getRepositories(name: string, page: string, rowsPerPage: number, order: string) {
     return gql`{
-      search(query: "${name}" type: REPOSITORY first: ${rowsPerPage} after: "${page}"){
+      search(query: "${name} ${order}" type: REPOSITORY first: ${rowsPerPage} after: "${page}"){
         repositoryCount
         nodes {
           ... on Repository {

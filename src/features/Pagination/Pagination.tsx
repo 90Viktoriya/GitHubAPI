@@ -14,7 +14,6 @@ export function Pagination() {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(totalCount);
   const handleChangePage = useCallback(
     (event: unknown, newPage: number) => {
       setSearchParams({

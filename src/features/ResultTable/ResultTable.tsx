@@ -1,7 +1,7 @@
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
-import { TableFields } from '../../data/TableFields';
+import { TableContainer, Table, TableRow, TableCell, TableBody } from '@mui/material';
 import { useGetRepositories } from '../../hooks/useGetRepositories';
 import { ComponentsCaptions } from '../../data/ComponentsCaptions';
+import { EnhancedTableHead } from './EnhancedTableHead/EnhancedTableHead';
 
 export function ResultTable() {
   const { repositories } = useGetRepositories();
@@ -9,15 +9,7 @@ export function ResultTable() {
   return (
     <TableContainer>
       <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">{TableFields.TITLE}</TableCell>
-            <TableCell align="right">{TableFields.LANGUAGE}</TableCell>
-            <TableCell align="right">{TableFields.FORKS}</TableCell>
-            <TableCell align="right">{TableFields.STARS}</TableCell>
-            <TableCell align="right">{TableFields.UPDATE}</TableCell>
-          </TableRow>
-        </TableHead>
+        <EnhancedTableHead />
         <TableBody>
           {!repositories.length ? (
             <TableRow>

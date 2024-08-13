@@ -23,11 +23,9 @@ export function Result() {
     const query = searchParams.get(RouterParams.QUERY);
     const page = searchParams.get(RouterParams.PAGE);
     if (query !== searchValue) {
-      console.log(query);
       dispatch(setSearchValue(query ?? initialState.searchValue));
     }
     if (page !== currentPage) {
-      console.log(page);
       dispatch(setCurrentPage(Number(page ?? initialState.currentPage)));
     }
   }, [currentPage, dispatch, location.search, searchParams, searchValue]);

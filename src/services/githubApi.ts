@@ -7,7 +7,7 @@ export const githubApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.github.com/graphql' }),
   endpoints: (builder) => ({
     getRepositoriesByName: builder.query<RepositoriesResponse, RepositoriesRequest>({
-      query: ({ searchValue, currentPage, rowsPerPage }) => ({
+      query: ({ searchValue, currentPage, rowsPerPage, orderBy, order }) => ({
         url: ``,
         method: 'POST',
         headers: {
@@ -15,7 +15,12 @@ export const githubApi = createApi({
           Authorization: `bearer ${import.meta.env.VITE_API_KEY}`
         },
         body: JSON.stringify({
-          query: queries.getRepositories(searchValue, btoa(`cursor:${(currentPage - 1) * rowsPerPage}`), rowsPerPage)
+          query: queries.getRepositories(
+            searchValue,
+            btoa(`cursor:${(currentPage - 1) * rowsPerPage}`),
+            rowsPerPage,
+            orderBy === 'updatedAt' ? ` sort:updated-${order}` : ''
+          )
         })
       })
     })

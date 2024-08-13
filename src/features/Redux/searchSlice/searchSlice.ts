@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from './searchSlice.constants';
+import { RepositoryInfo } from '../../../services/githubApi.types';
+import { Order } from '../../ResultTable/EnhancedTableHead/EnhancedTableHead.type';
 
 export const searchSlice = createSlice({
   name: 'search',
@@ -13,10 +15,16 @@ export const searchSlice = createSlice({
     },
     setRowsPerPage: (state, action: PayloadAction<number>) => {
       state.rowsPerPage = action.payload;
+    },
+    setOrderBy: (state, action: PayloadAction<keyof RepositoryInfo>) => {
+      state.orderBy = action.payload;
+    },
+    setOrder: (state, action: PayloadAction<Order>) => {
+      state.order = action.payload;
     }
   }
 });
 
-export const { setCurrentPage, setSearchValue, setRowsPerPage } = searchSlice.actions;
+export const { setCurrentPage, setSearchValue, setRowsPerPage, setOrderBy, setOrder } = searchSlice.actions;
 
 export default searchSlice.reducer;
