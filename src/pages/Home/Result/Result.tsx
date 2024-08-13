@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useGetRepositories } from '../../../hooks/useGetRepositories';
 import { Pagination } from '../../../features/Pagination/Pagination';
 import { ResultTable } from '../../../features/ResultTable/ResultTable';
 import { Loader } from '../../../components/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../../features/Redux/hooks';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { RouterParams } from '../../../features/Router/Router.enum';
 import { setSearchValue, setCurrentPage, setSelectedRepository } from '../../../features/Redux/searchSlice/searchSlice';
 import { initialState } from '../../../features/Redux/searchSlice/searchSlice.constants';
@@ -13,6 +13,7 @@ import { ComponentsCaptions } from '../../../data/ComponentsCaptions';
 import { Details } from '../Details/Details';
 import styles from './Result.module.sass';
 
+//Центральный блок приложения
 export function Result() {
   const { isFetching } = useGetRepositories();
   const searchValue = useAppSelector((state) => state.search.searchValue);
@@ -30,7 +31,7 @@ export function Result() {
     if (query !== searchValue) {
       dispatch(setSearchValue(query ?? initialState.searchValue));
     }
-    if (page !== currentPage) {
+    if (Number(page) !== currentPage) {
       dispatch(setCurrentPage(Number(page ?? initialState.currentPage)));
     }
     if (details && details !== `${selectedRepository.login}_${selectedRepository.name}`) {

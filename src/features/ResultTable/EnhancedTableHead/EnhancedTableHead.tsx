@@ -5,13 +5,15 @@ import { useAppDispatch, useAppSelector } from '../../Redux/hooks';
 import { RepositoryInfo } from '../../../services/githubApi.types';
 import { setOrderBy, setOrder } from '../../Redux/searchSlice/searchSlice';
 
+//Заголовок таблицы с сортировкой
 export function EnhancedTableHead() {
   const dispatch = useAppDispatch();
   const orderBy = useAppSelector((state) => state.search.orderBy);
   const order = useAppSelector((state) => state.search.order);
   const onSortLabelClick = useCallback(
     (property: keyof RepositoryInfo) => () => {
-      const isAsc = orderBy === property && order === 'asc';
+      // в GrapQL сортировка работает только по дате обновления
+      const isAsc = orderBy === property && property === 'updatedAt' && order === 'asc';
       dispatch(setOrder(isAsc ? 'desc' : 'asc'));
       dispatch(setOrderBy(property));
       setOrderBy(property);

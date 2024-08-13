@@ -1,3 +1,4 @@
+//Наименования всех элементов приложения
 export enum ComponentsCaptions {
   HOME = 'Добро пожаловать',
   NOTHING_FOUND = 'Извините ничего не найдено.',

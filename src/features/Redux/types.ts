@@ -1,4 +1,5 @@
-import { storeRedux } from './store';
+import { store } from './store';
 
-export type RootState = ReturnType<typeof storeRedux.getState>;
-export type AppDispatch = typeof storeRedux.dispatch;
+//типизация стандартных Root state и дистпетчера
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

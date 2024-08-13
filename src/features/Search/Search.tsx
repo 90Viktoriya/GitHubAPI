@@ -8,6 +8,7 @@ import { RouterParams, RouterPath } from '../Router/Router.enum';
 import { initialState } from '../Redux/searchSlice/searchSlice.constants';
 import styles from './Search.module.sass';
 
+//блок поиска
 export function Search() {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useAppDispatch();

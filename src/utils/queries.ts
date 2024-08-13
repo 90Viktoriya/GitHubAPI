@@ -2,6 +2,7 @@ import { gql } from 'graphql-request';
 import { LANGUAGE_COUNT, LANGUAGE_COUNT_IN_DETAILS } from '../services/githubApi.constants';
 
 class Queries {
+  //запрос на поиск репозиториев
   public getRepositories(name: string, page: string, rowsPerPage: number, order: string) {
     return gql`{
       search(query: "${name} ${order}" type: REPOSITORY first: ${rowsPerPage} after: "${page}"){
@@ -28,6 +29,8 @@ class Queries {
       }
     }`;
   }
+
+  //запрос на получение деталей по репозиторию
   public getRepository(name: string, login: string) {
     return gql`{
        repositoryOwner (login: "${login}") {

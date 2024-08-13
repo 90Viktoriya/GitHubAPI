@@ -1,6 +1,7 @@
 import { useAppSelector } from '../features/Redux/hooks';
 import { useGetRepositoriesByNameQuery } from '../services/githubApi';
 
+//получение данных по поиску репозиториев
 export function useGetRepositories() {
   const searchValue = useAppSelector((state) => state.search.searchValue);
   const currentPage = useAppSelector((state) => state.search.currentPage);

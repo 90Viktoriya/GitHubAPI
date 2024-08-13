@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
+//кастомизация шрифтов Typography
 const theme = createTheme({
   typography: {
     fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,

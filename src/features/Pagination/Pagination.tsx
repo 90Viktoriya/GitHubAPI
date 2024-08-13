@@ -1,13 +1,14 @@
+import { useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { TablePagination } from '@mui/material';
 import { useGetRepositories } from '../../hooks/useGetRepositories';
 import { useAppDispatch, useAppSelector } from '../Redux/hooks';
-import { useCallback } from 'react';
 import { setRowsPerPage } from '../Redux/searchSlice/searchSlice';
 import { initialState } from '../Redux/searchSlice/searchSlice.constants';
 import { RouterParams } from '../Router/Router.enum';
-import { useSearchParams } from 'react-router-dom';
 import styles from './Pagination.module.sass';
 
+//Блок пагинации
 export function Pagination() {
   const { totalCount } = useGetRepositories();
   const currentPage = useAppSelector((state) => state.search.currentPage);

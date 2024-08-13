@@ -4,6 +4,7 @@ import { RepositoryInfo } from '../../../services/githubApi.types';
 import { Order } from '../../ResultTable/EnhancedTableHead/EnhancedTableHead.type';
 import { SelectedRepository } from './searchSlice.interface';
 
+//Слайс для хранения необходимых данных для поиска
 export const searchSlice = createSlice({
   name: 'search',
   initialState,

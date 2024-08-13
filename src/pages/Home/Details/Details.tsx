@@ -1,12 +1,13 @@
+import { yellow } from '@mui/material/colors';
 import { Box, Chip, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { Loader } from '../../../components/Loader/Loader';
 import { useAppSelector } from '../../../features/Redux/hooks';
 import { useGetRepository } from '../../../hooks/useGetRepository';
-import { yellow } from '@mui/material/colors';
-import styles from './Details.module.sass';
 import { ComponentsCaptions } from '../../../data/ComponentsCaptions';
+import styles from './Details.module.sass';
 
+//блок с деталями по репозиторию
 export function Details() {
   const { details, isFetching } = useGetRepository();
   const repositoryName = useAppSelector((state) => state.search.selectedRepository.name);

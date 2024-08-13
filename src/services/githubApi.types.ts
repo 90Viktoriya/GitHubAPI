@@ -1,26 +1,13 @@
 import { Order } from '../features/ResultTable/EnhancedTableHead/EnhancedTableHead.type';
 
-//Data required for repositories request
-export type RepositoriesRequest = {
-  searchValue: string;
-  currentPage: number;
-  rowsPerPage: number;
-  orderBy: keyof RepositoryInfo;
-  order: Order;
-};
-
-//Result for repositories request
-export type RepositoriesResponse = {
-  data: {
-    search: {
-      repositoryCount: number;
-      nodes: RepositoryInfo[];
-    };
-  };
+type Language = {
+  name: string;
 };
 type RepositoryOwner = {
   login: string;
 };
+
+//Данные по репозиторию
 export type RepositoryInfo = {
   name: string;
   forkCount: string;
@@ -32,21 +19,35 @@ export type RepositoryInfo = {
   owner: RepositoryOwner;
 };
 
-type Language = {
-  name: string;
+//Данные необходимые для поиска репозиториев
+export type RepositoriesRequest = {
+  searchValue: string;
+  currentPage: number;
+  rowsPerPage: number;
+  orderBy: keyof RepositoryInfo;
+  order: Order;
 };
 
+//Результат поиска репозиториев
+export type RepositoriesResponse = {
+  data: {
+    search: {
+      repositoryCount: number;
+      nodes: RepositoryInfo[];
+    };
+  };
+};
+
+//Данные необходимые для получения деталей по репозиторию
 export type RepositoryRequest = {
   name: string;
   login: string;
 };
-export type RepositoryResponse = {
-  data: {
-    repositoryOwner: {
-      repository: RepositoryDetails;
-    };
-  };
+
+type LicenseInfo = {
+  name: string;
 };
+
 type RepositoryDetails = {
   description: string;
   languages: {
@@ -56,6 +57,11 @@ type RepositoryDetails = {
   stargazerCount: number;
 };
 
-type LicenseInfo = {
-  name: string;
+//Результат по запросу деталей
+export type RepositoryResponse = {
+  data: {
+    repositoryOwner: {
+      repository: RepositoryDetails;
+    };
+  };
 };

@@ -4,6 +4,7 @@ import { Home } from '../../pages/Home/Home';
 import { Error } from '../../pages/Error/Error';
 import { Result } from '../../pages/Home/Result/Result';
 
+//навигация
 export function Router() {
   const router = createBrowserRouter([
     {

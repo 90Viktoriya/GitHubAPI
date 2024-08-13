@@ -1,5 +1,6 @@
 import { HeadCell } from './EnhancedTableHead.interface';
 
+//Заголовок таблицы
 export const headCells: HeadCell[] = [
   { id: 'name', label: 'Название', isSortable: true },
   { id: 'languages', label: 'Язык', isSortable: false },

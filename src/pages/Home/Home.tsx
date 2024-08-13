@@ -5,6 +5,7 @@ import { Search } from '../../features/Search/Search';
 import { RouterPath } from '../../features/Router/Router.enum';
 import styles from './Home.module.sass';
 
+//Главная страница
 export function Home() {
   const location = useLocation();
   const showResult = location.pathname.match(RouterPath.SEARCH);
