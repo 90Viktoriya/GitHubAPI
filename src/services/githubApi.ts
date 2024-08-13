@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { queries } from '../utils/queries';
-import { RepositoriesRequest, RepositoriesResponse } from './githubApi.types';
+import { RepositoriesRequest, RepositoriesResponse, RepositoryRequest, RepositoryResponse } from './githubApi.types';
 
 export const githubApi = createApi({
   reducerPath: 'githubRepository',
@@ -23,8 +23,21 @@ export const githubApi = createApi({
           )
         })
       })
+    }),
+    getRepository: builder.query<RepositoryResponse, RepositoryRequest>({
+      query: ({ name, login }) => ({
+        url: ``,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${import.meta.env.VITE_API_KEY}`
+        },
+        body: JSON.stringify({
+          query: queries.getRepository(name, login)
+        })
+      })
     })
   })
 });
 
-export const { useGetRepositoriesByNameQuery } = githubApi;
+export const { useGetRepositoriesByNameQuery, useGetRepositoryQuery } = githubApi;

@@ -1,9 +1,9 @@
 export enum RouterParams {
   QUERY = 'query',
-  PAGE = 'page'
+  PAGE = 'page',
+  DETAILS = 'details'
 }
 
 export enum RouterPath {
-  SEARCH = 'search',
-  PAGE = 'page'
+  SEARCH = 'search'
 }

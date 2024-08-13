@@ -18,6 +18,9 @@ export type RepositoriesResponse = {
     };
   };
 };
+type RepositoryOwner = {
+  login: string;
+};
 export type RepositoryInfo = {
   name: string;
   forkCount: string;
@@ -26,8 +29,33 @@ export type RepositoryInfo = {
     nodes: Language[];
   };
   updatedAt: string;
+  owner: RepositoryOwner;
 };
 
 type Language = {
+  name: string;
+};
+
+export type RepositoryRequest = {
+  name: string;
+  login: string;
+};
+export type RepositoryResponse = {
+  data: {
+    repositoryOwner: {
+      repository: RepositoryDetails;
+    };
+  };
+};
+type RepositoryDetails = {
+  description: string;
+  languages: {
+    nodes: Language[];
+  };
+  licenseInfo: LicenseInfo;
+  stargazerCount: number;
+};
+
+type LicenseInfo = {
   name: string;
 };

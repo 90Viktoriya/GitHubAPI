@@ -1,14 +1,17 @@
 import { gql } from 'graphql-request';
-import { LANGUAGE_COUNT } from '../services/githubApi.constants';
+import { LANGUAGE_COUNT, LANGUAGE_COUNT_IN_DETAILS } from '../services/githubApi.constants';
 
 class Queries {
-  getRepositories(name: string, page: string, rowsPerPage: number, order: string) {
+  public getRepositories(name: string, page: string, rowsPerPage: number, order: string) {
     return gql`{
       search(query: "${name} ${order}" type: REPOSITORY first: ${rowsPerPage} after: "${page}"){
         repositoryCount
         nodes {
           ... on Repository {
             name
+            owner {
+              login
+            }
             forkCount
             stargazerCount
             languages(first: ${LANGUAGE_COUNT}) {
@@ -21,6 +24,24 @@ class Queries {
         }
         pageInfo {
           endCursor
+        }
+      }
+    }`;
+  }
+  public getRepository(name: string, login: string) {
+    return gql`{
+       repositoryOwner (login: "${login}") {
+        repository (name: "${name}") {
+          description
+          languages(first: ${LANGUAGE_COUNT_IN_DETAILS}) {
+            nodes {
+              name
+            }
+          }
+          stargazerCount
+          licenseInfo {
+            name
+          }
         }
       }
     }`;

@@ -5,5 +5,9 @@ export const initialState: searchState = {
   searchValue: '',
   rowsPerPage: 10,
   orderBy: 'name',
-  order: 'asc'
+  order: 'asc',
+  selectedRepository: {
+    name: '',
+    login: ''
+  }
 };

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from './searchSlice.constants';
 import { RepositoryInfo } from '../../../services/githubApi.types';
 import { Order } from '../../ResultTable/EnhancedTableHead/EnhancedTableHead.type';
+import { SelectedRepository } from './searchSlice.interface';
 
 export const searchSlice = createSlice({
   name: 'search',
@@ -21,10 +22,14 @@ export const searchSlice = createSlice({
     },
     setOrder: (state, action: PayloadAction<Order>) => {
       state.order = action.payload;
+    },
+    setSelectedRepository: (state, action: PayloadAction<SelectedRepository>) => {
+      state.selectedRepository = action.payload;
     }
   }
 });
 
-export const { setCurrentPage, setSearchValue, setRowsPerPage, setOrderBy, setOrder } = searchSlice.actions;
+export const { setCurrentPage, setSearchValue, setRowsPerPage, setOrderBy, setOrder, setSelectedRepository } =
+  searchSlice.actions;
 
 export default searchSlice.reducer;
