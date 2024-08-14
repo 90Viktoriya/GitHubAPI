@@ -39,17 +39,21 @@ export function ResultTable() {
           ) : (
             repositories.map((repository) => (
               <TableRow
-                key={`${repository.name} ${repository.updatedAt}`}
+                key={`${repository.name} ${repository.updated_at}`}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={handleOnCellClick({ name: repository.name, login: repository.owner.login })}
               >
                 <TableCell component="th" scope="row">
                   {repository.name}
                 </TableCell>
-                <TableCell>{repository.languages.nodes.length > 0 ? repository.languages.nodes[0].name : ''}</TableCell>
-                <TableCell>{repository.forkCount}</TableCell>
-                <TableCell>{repository.stargazerCount}</TableCell>
-                <TableCell>{repository.updatedAt.substring(0, 10)}</TableCell>
+                <TableCell>{repository.language}</TableCell>
+                <TableCell>{repository.forks_count}</TableCell>
+                <TableCell>{repository.stargazers_count}</TableCell>
+                <TableCell>
+                  {repository.pushed_at
+                    ? repository.pushed_at.substring(0, 10)
+                    : repository.created_at.substring(0, 10)}
+                </TableCell>
               </TableRow>
             ))
           )}

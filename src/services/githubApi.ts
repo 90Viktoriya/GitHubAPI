@@ -1,40 +1,28 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { queries } from '../utils/queries';
 import { RepositoriesRequest, RepositoriesResponse, RepositoryRequest, RepositoryResponse } from './githubApi.types';
 
 export const githubApi = createApi({
   reducerPath: 'githubRepository',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.github.com/graphql' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.github.com' }),
   endpoints: (builder) => ({
     getRepositoriesByName: builder.query<RepositoriesResponse, RepositoriesRequest>({
       query: ({ searchValue, currentPage, rowsPerPage, orderBy, order }) => ({
-        url: ``,
-        method: 'POST',
+        url: `/search/repositories?q=${searchValue}&sort=${orderBy}&order=${order}&per_page=${rowsPerPage}&page=${currentPage}`,
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28',
           Authorization: `bearer ${import.meta.env.VITE_API_KEY}`
-        },
-        body: JSON.stringify({
-          query: queries.getRepositories(
-            searchValue,
-            btoa(`cursor:${(currentPage - 1) * rowsPerPage}`),
-            rowsPerPage,
-            orderBy === 'updatedAt' ? ` sort:updated-${order}` : ''
-          )
-        })
+        }
       })
     }),
     getRepository: builder.query<RepositoryResponse, RepositoryRequest>({
       query: ({ name, login }) => ({
-        url: ``,
-        method: 'POST',
+        url: `/repos/${login}/${name}`,
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28',
           Authorization: `bearer ${import.meta.env.VITE_API_KEY}`
-        },
-        body: JSON.stringify({
-          query: queries.getRepository(name, login)
-        })
+        }
       })
     })
   })

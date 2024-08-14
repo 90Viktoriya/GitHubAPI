@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from './searchSlice.constants';
-import { RepositoryInfo } from '../../../services/githubApi.types';
 import { Order } from '../../ResultTable/EnhancedTableHead/EnhancedTableHead.type';
-import { SelectedRepository } from './searchSlice.interface';
+import { RepositoryRequest } from '../../../services/githubApi.types';
 
 //Слайс для хранения необходимых данных для поиска
 export const searchSlice = createSlice({
@@ -18,13 +17,13 @@ export const searchSlice = createSlice({
     setRowsPerPage: (state, action: PayloadAction<number>) => {
       state.rowsPerPage = action.payload;
     },
-    setOrderBy: (state, action: PayloadAction<keyof RepositoryInfo>) => {
+    setOrderBy: (state, action: PayloadAction<string>) => {
       state.orderBy = action.payload;
     },
     setOrder: (state, action: PayloadAction<Order>) => {
       state.order = action.payload;
     },
-    setSelectedRepository: (state, action: PayloadAction<SelectedRepository>) => {
+    setSelectedRepository: (state, action: PayloadAction<RepositoryRequest>) => {
       state.selectedRepository = action.payload;
     }
   }

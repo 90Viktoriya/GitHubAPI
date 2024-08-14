@@ -19,6 +19,9 @@ export function Search() {
   };
 
   const handleOnClick = useCallback(() => {
+    if (!inputValue) {
+      return;
+    }
     dispatch(setSearchValue(inputValue));
     dispatch(setCurrentPage(initialState.currentPage));
     navigate(

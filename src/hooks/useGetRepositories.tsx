@@ -9,5 +9,5 @@ export function useGetRepositories() {
   const orderBy = useAppSelector((state) => state.search.orderBy);
   const order = useAppSelector((state) => state.search.order);
   const { data, isFetching } = useGetRepositoriesByNameQuery({ searchValue, currentPage, rowsPerPage, orderBy, order });
-  return { repositories: data?.data.search.nodes || [], isFetching, totalCount: data?.data.search.repositoryCount };
+  return { repositories: data?.items || [], isFetching, totalCount: data?.total_count };
 }

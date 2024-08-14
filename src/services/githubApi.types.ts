@@ -1,8 +1,5 @@
 import { Order } from '../features/ResultTable/EnhancedTableHead/EnhancedTableHead.type';
 
-type Language = {
-  name: string;
-};
 type RepositoryOwner = {
   login: string;
 };
@@ -10,12 +7,12 @@ type RepositoryOwner = {
 //Данные по репозиторию
 export type RepositoryInfo = {
   name: string;
-  forkCount: string;
-  stargazerCount: string;
-  languages: {
-    nodes: Language[];
-  };
-  updatedAt: string;
+  forks_count: string;
+  stargazers_count: string;
+  language: string;
+  updated_at: string;
+  pushed_at: string;
+  created_at: string;
   owner: RepositoryOwner;
 };
 
@@ -24,18 +21,14 @@ export type RepositoriesRequest = {
   searchValue: string;
   currentPage: number;
   rowsPerPage: number;
-  orderBy: keyof RepositoryInfo;
+  orderBy: string;
   order: Order;
 };
 
 //Результат поиска репозиториев
 export type RepositoriesResponse = {
-  data: {
-    search: {
-      repositoryCount: number;
-      nodes: RepositoryInfo[];
-    };
-  };
+  total_count: number;
+  items: RepositoryInfo[];
 };
 
 //Данные необходимые для получения деталей по репозиторию
@@ -44,24 +37,12 @@ export type RepositoryRequest = {
   login: string;
 };
 
-type LicenseInfo = {
-  name: string;
-};
-
-type RepositoryDetails = {
-  description: string;
-  languages: {
-    nodes: Language[];
-  };
-  licenseInfo: LicenseInfo;
-  stargazerCount: number;
-};
-
 //Результат по запросу деталей
 export type RepositoryResponse = {
-  data: {
-    repositoryOwner: {
-      repository: RepositoryDetails;
-    };
+  description: string;
+  language: string;
+  license: {
+    name: string;
   };
+  stargazers_count: number;
 };
