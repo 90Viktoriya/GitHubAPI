@@ -16,6 +16,8 @@ export type RepositoryInfo = {
     nodes: Language[];
   };
   updatedAt: string;
+  createdAt: string;
+  pushedAt: string;
   owner: RepositoryOwner;
 };
 

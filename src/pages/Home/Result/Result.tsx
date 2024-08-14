@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useGetRepositories } from '../../../hooks/useGetRepositories';
 import { Pagination } from '../../../features/Pagination/Pagination';
@@ -7,7 +7,7 @@ import { ResultTable } from '../../../features/ResultTable/ResultTable';
 import { Loader } from '../../../components/Loader/Loader';
 import { useAppDispatch, useAppSelector } from '../../../features/Redux/hooks';
 import { RouterParams } from '../../../features/Router/Router.enum';
-import { setSearchValue, setCurrentPage, setSelectedRepository } from '../../../features/Redux/searchSlice/searchSlice';
+import { setSearchValue, setCurrentPage } from '../../../features/Redux/searchSlice/searchSlice';
 import { initialState } from '../../../features/Redux/searchSlice/searchSlice.constants';
 import { ComponentsCaptions } from '../../../data/ComponentsCaptions';
 import { Details } from '../Details/Details';
@@ -18,9 +18,7 @@ export function Result() {
   const { isFetching } = useGetRepositories();
   const searchValue = useAppSelector((state) => state.search.searchValue);
   const currentPage = useAppSelector((state) => state.search.currentPage);
-  const selectedRepository = useAppSelector((state) => state.search.selectedRepository);
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const details = searchParams.get(RouterParams.DETAILS);
 
@@ -34,20 +32,7 @@ export function Result() {
     if (Number(page) !== currentPage) {
       dispatch(setCurrentPage(Number(page ?? initialState.currentPage)));
     }
-    if (details && details !== `${selectedRepository.login}_${selectedRepository.name}`) {
-      const [login, name] = details.split('_');
-      dispatch(setSelectedRepository({ login, name }));
-    }
-  }, [
-    currentPage,
-    details,
-    dispatch,
-    location.search,
-    searchParams,
-    searchValue,
-    selectedRepository.login,
-    selectedRepository.name
-  ]);
+  }, [currentPage, dispatch, searchParams, searchValue]);
 
   return (
     <>
