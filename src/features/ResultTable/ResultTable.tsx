@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useGetRepositories } from '../../hooks/useGetRepositories';
 import { ComponentsCaptions } from '../../data/ComponentsCaptions';
 import { EnhancedTableHead } from './EnhancedTableHead/EnhancedTableHead';
-import { useAppDispatch } from '../Redux/hooks';
+import { useAppDispatch, useAppSelector } from '../Redux/hooks';
 import { setSelectedRepository } from '../Redux/searchSlice/searchSlice';
 import { RepositoryRequest } from '../../services/githubApi.types';
 import { initialState } from '../Redux/searchSlice/searchSlice.constants';
@@ -14,13 +14,14 @@ import { RouterParams } from '../Router/Router.enum';
 export function ResultTable() {
   const { repositories } = useGetRepositories();
   const dispatch = useAppDispatch();
+  const selectedRepository = useAppSelector((state) => state.search.selectedRepository);
   const [searchParams, setSearchParams] = useSearchParams();
   const handleOnCellClick = useCallback(
     (selectedRepository: RepositoryRequest) => () => {
       dispatch(setSelectedRepository(selectedRepository));
       setSearchParams({
         [RouterParams.QUERY]: searchParams.get(RouterParams.QUERY) ?? '',
-        [RouterParams.PAGE]: initialState.currentPage.toString(),
+        [RouterParams.PAGE]: searchParams.get(RouterParams.PAGE) ?? initialState.currentPage.toString(),
         [RouterParams.DETAILS]: `${selectedRepository.login}_${selectedRepository.name}`
       });
     },
@@ -42,6 +43,9 @@ export function ResultTable() {
                 key={`${repository.name} ${repository.updated_at}`}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 onClick={handleOnCellClick({ name: repository.name, login: repository.owner.login })}
+                selected={
+                  repository.name === selectedRepository.name && repository.owner.login === selectedRepository.login
+                }
               >
                 <TableCell component="th" scope="row">
                   {repository.name}
